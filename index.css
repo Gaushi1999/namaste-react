@@ -64,3 +64,13 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.search-container {
+    margin: 10px;
+}
+
+.rated-btn {
+    margin: 10px;
+    padding: 5px;
+    background-color: pink;
+}
