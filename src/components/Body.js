@@ -1,6 +1,7 @@
 import RestaurantCards from './RestaurantCards';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
 
 const Body = () => {  
 
@@ -75,8 +76,13 @@ const Body = () => {
         {isRatingFilterApplied ? "View all restaurants" : "View top rated restaurants"}
       </button>
       <div className='res-conatiner'>
-        {filteredResturantList.map((restaurant, index) => (
-            <RestaurantCards key={index} resData={restaurant?.info} />
+        {filteredResturantList.map((restaurant) => (
+            <Link 
+              key={restaurant?.info.id}
+              to={`/restaurants/${restaurant?.info.id}`}
+            >
+              <RestaurantCards resData={restaurant?.info} />
+            </Link>
         ))}
       </div>
     </div>

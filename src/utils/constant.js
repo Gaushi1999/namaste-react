@@ -6,3 +6,6 @@ export const LOGO_URL =
 
 export const RES_IMAGE_LINK = 
     "https://img.freepik.com/free-photo/vertical-shot-traditional-indian-paneer-butter-masala-cheese-cottage-curry-black-surface_181624-32001.jpg?size=626&ext=jpg";
+
+export const MENU_API = 
+    "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=";
