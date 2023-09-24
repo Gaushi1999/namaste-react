@@ -2,6 +2,8 @@ import RestaurantCards from './RestaurantCards';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnlineCheck from "../utils/useOnlineCheck";
+import { RES_API } from '../utils/constant';
 
 const Body = () => {  
 
@@ -10,11 +12,10 @@ const Body = () => {
   const [isRatingFilterApplied, setIsRatingFilterApplied] = useState(false);
   const [searchText, serSearchText] = useState('');
 
-  const fetchData = async () => {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
+  const onlineStatus = useOnlineCheck();
 
+  const fetchData = async () => {
+    let data = await fetch(RES_API);
     const json = await data.json();
 
     // Optional Chaining
@@ -48,10 +49,14 @@ const Body = () => {
     fetchData();
   }, []);
 
+  if (!onlineStatus) return (
+    <h1>Looks like you are offline please check your internet connection.</h1>
+  );
+
   if (resturantList.length === 0)
     return (
       <Shimmer />
-    );
+  );
 
   return (
     <div className='body'>
