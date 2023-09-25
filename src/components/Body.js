@@ -60,34 +60,41 @@ const Body = () => {
 
   return (
     <div className='body'>
-      <div className='search-container'>
-        <input
-          type="text"
-          className='search-box'
-          value={searchText}
-          onChange={(e) => {
-            serSearchText(e.target.value);
-          }}
-        />
-        <button 
-          className="search-btn"
-          onClick={() => searchTextFilter()}
-        >
-          Search
-        </button>
+      <div className="flex">
+        <div className="m-3">
+          <input
+            type="text"
+            className="border border-solid border-black"
+            value={searchText}
+            onChange={(e) => {
+              serSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="m-2 px-2 py-1 bg-green-200"
+            onClick={() => searchTextFilter()}
+          >
+            Search
+          </button>
+        </div>
+        <div className="m-3">
+          <button
+            className="p-2 m-2 text-white bg-black"
+            onClick={() => restaurantRatingFilter(isRatingFilterApplied ? 'all' : 'top')}
+          >
+            {isRatingFilterApplied ? "View all restaurants" : "View top rated restaurants"}
+          </button>
+        </div>
       </div>
 
-      <button className='rated-btn' onClick={() => restaurantRatingFilter(isRatingFilterApplied ? 'all' : 'top')}>
-        {isRatingFilterApplied ? "View all restaurants" : "View top rated restaurants"}
-      </button>
-      <div className='res-conatiner'>
+      <div className="flex flex-wrap">
         {filteredResturantList.map((restaurant) => (
-            <Link 
-              key={restaurant?.info.id}
-              to={`/restaurants/${restaurant?.info.id}`}
-            >
-              <RestaurantCards resData={restaurant?.info} />
-            </Link>
+          <Link
+            key={restaurant?.info.id}
+            to={`/restaurants/${restaurant?.info.id}`}
+          >
+            <RestaurantCards resData={restaurant?.info} />
+          </Link>
         ))}
       </div>
     </div>
