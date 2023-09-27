@@ -26,4 +26,14 @@ const RestaurantCards = (props) => {
   );
 }
 
+
+export const TopRatedRestaurantCards = (RestaurantCard) => {
+  return (props) => (
+    <div>
+      <label className="absolute m-2 p-2 bg-black text-white rounded-lg">Top choice</label>
+      <RestaurantCard {...props} />
+    </div>
+  )
+}
+
 export default RestaurantCards;

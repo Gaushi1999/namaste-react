@@ -1,4 +1,4 @@
-import RestaurantCards from './RestaurantCards';
+import RestaurantCards, { TopRatedRestaurantCards } from './RestaurantCards';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,8 @@ const Body = () => {
   const [searchText, serSearchText] = useState('');
 
   const onlineStatus = useOnlineCheck();
+
+  const TopRatedRestaurants = TopRatedRestaurantCards(RestaurantCards);
 
   const fetchData = async () => {
     let data = await fetch(RES_API);
@@ -92,8 +94,12 @@ const Body = () => {
           <Link
             key={restaurant?.info.id}
             to={`/restaurants/${restaurant?.info.id}`}
-          >
+          > 
+          {restaurant?.info?.avgRating >= 4.5 ?
+            <TopRatedRestaurants resData={restaurant?.info}/>
+            :
             <RestaurantCards resData={restaurant?.info} />
+          }
           </Link>
         ))}
       </div>
