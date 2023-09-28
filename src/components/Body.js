@@ -1,9 +1,10 @@
 import RestaurantCards, { TopRatedRestaurantCards } from './RestaurantCards';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineCheck from "../utils/useOnlineCheck";
 import { RES_API } from '../utils/constant';
+import UserContext from '../utils/userContext';
 
 const Body = () => {  
 
@@ -15,6 +16,8 @@ const Body = () => {
   const onlineStatus = useOnlineCheck();
 
   const TopRatedRestaurants = TopRatedRestaurantCards(RestaurantCards);
+
+  const { changeUserName, name } = useContext(UserContext);
 
   const fetchData = async () => {
     let data = await fetch(RES_API);
@@ -86,7 +89,17 @@ const Body = () => {
           >
             {isRatingFilterApplied ? "View all restaurants" : "View top rated restaurants"}
           </button>
+
+          <input
+            type="text"
+            className="border border-solid border-black p-1"
+            value={name}
+            onChange={(e) => {
+              changeUserName(e.target.value);
+            }}
+          />
         </div>
+        
       </div>
 
       <div className="flex flex-wrap">
