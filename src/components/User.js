@@ -27,12 +27,11 @@ class User extends React.Component {
         const { name, location, avatar_url } = this.state.userInfo;
 
         return(
-            <div className='user-section'>
-                <img src={avatar_url} />
+            <div className='text-center'>
+                <img src={avatar_url} className='w-56 h-56 mx-auto m-2 rounded-full'/>
                 <h1>Hey i'm {name}</h1>
                 <h2>Country: {location}</h2>
-                <h3>Full Stack developer </h3>
-                <p>Managing the multiple thinngs simoustanesouly i'm the only one here currently</p>
+                <h3><i>Sorry but i'm Software engineer so can't send you food right now, but i can cook for you guys</i></h3>
             </div>
         );
     }

@@ -1,9 +1,10 @@
 import User from "./User";
 
 const About = () => (
-    <div className="about-section">
-        <h1>Hungry ?</h1>
-        <h3>Hii, we are here to give you food of your choice in few minutes</h3>
+    <div className="text-center">
+        <h1>Hungry ? please make arrangement </h1>
+        <h2>About me:</h2>
+        <hr/>
         <User />
     </div>
 )

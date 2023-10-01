@@ -64,45 +64,52 @@ const Body = () => {
   );
 
   return (
-    <div className='body'>
-      <div className="flex">
-        <div className="m-3">
+    <div className="text-center">
+      <div>
+        <input
+          type="text"
+          className="border border-solid border-green-400 p-3 rounded-lg"
+          value={name}
+          placeholder="Enter you name"
+          onChange={(e) => {
+            changeUserName(e.target.value);
+          }}
+        />
+      </div>
+
+      <br/>
+      <br/>
+
+      <div>
+        <div>
           <input
             type="text"
-            className="border border-solid border-black"
+            className="border border-solid border-green-400 py-2 px-4 rounded-lg"
             value={searchText}
+            placeholder="Search restaurants"
             onChange={(e) => {
               serSearchText(e.target.value);
             }}
           />
           <button
-            className="m-2 px-2 py-1 bg-green-200"
+            className="m-2 px-4 py-2 rounded-lg bg-green-200"
             onClick={() => searchTextFilter()}
           >
             Search
           </button>
         </div>
-        <div className="m-3">
+
+        <div>
           <button
             className="p-2 m-2 text-white bg-black"
             onClick={() => restaurantRatingFilter(isRatingFilterApplied ? 'all' : 'top')}
           >
             {isRatingFilterApplied ? "View all restaurants" : "View top rated restaurants"}
           </button>
-
-          <input
-            type="text"
-            className="border border-solid border-black p-1"
-            value={name}
-            onChange={(e) => {
-              changeUserName(e.target.value);
-            }}
-          />
         </div>
-        
       </div>
 
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-between mx-2">
         {filteredResturantList.map((restaurant) => (
           <Link
             key={restaurant?.info.id}
